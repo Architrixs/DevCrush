@@ -67,10 +67,13 @@ export class PhotoEditorComponent implements OnInit {
           p.isMain = true;
         }
       });
-    }, error => {
-      console.log(error);
-    }
-    );
+    });
+  }
+
+  deletePhoto(photoId: number) {
+    this.memberService.deletePhoto(photoId).subscribe(() => {
+      this.member.photos = this.member.photos.filter(p => p.id !== photoId);
+    });
   }
 
 }
